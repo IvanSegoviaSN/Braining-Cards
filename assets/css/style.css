@@ -1,0 +1,62 @@
+body {
+    margin: 0%;
+    padding: 0%;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(https://fotos.subefotos.com/27ff2cb70ee2112a84a869b9b05bd781o.jpg);
+    background-attachment: fixed;
+
+}
+
+.cardIDReveal {
+    background-image: none;
+    background-color: red;
+}
+
+#containerGame {
+    width: 70%;
+    margin-top: 3%;
+}
+
+#cardsContainer div {
+    margin: 2px;
+    height: 280px;
+    width: 190px;
+
+    background: linear-gradient(0deg, #fff19c00, #fff19c80),
+        url(https://fotos.subefotos.com/70283263ff195bd94b79e532cfb45319o.png);
+    background-size: 160%;
+
+    border: 2px solid;
+    border-radius: 8px;
+
+}
+
+#cardsContainer div:hover {
+    cursor: pointer;
+    animation: animationCardZoom 8s ease infinite;
+
+    border: 2px solid #13a62399;
+    border-radius: 15px;
+
+}
+
+#cardsContainer div:active {
+    animation: animationCardRotate 3s ease;
+
+}
+
+@keyframes animationCardRotate {
+    0%{transform: rotateY(0deg)}
+    50%{transform: rotateY(180deg)}
+    50%{background: linear-gradient(0deg, #ff1a1a, #fff19c80)}
+}
+
+@keyframes animationCardZoom {
+    0%{background-size: 160%}
+    50%{background-size: 110%}
+    65%{background-size: 110%}
+    85%{background-size: 110%}
+    100%{background-size: 160%;}
+}
