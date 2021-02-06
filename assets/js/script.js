@@ -1,50 +1,51 @@
 const arrayCards = [];
+const repeatIndexCards = [];
 
 function createCard(i) {
-    arrayCards.push('<div onclick="cardCheck(this)" name="cardID" id="cardID_' + i + '"><span id="letter">DYZ</span></div>');
+    let card = '<div name="cardID" id="cardID_' + i + '" class="col-2 cardT">' +
+        '<div id="cardFront"></div>' +
+        '<div id="cardBack"></div>' +
+        '</div>';
+
+    // Doble para que las cartas coincidan
+    arrayCards.push(card);
+    arrayCards.push(card);
 }
 
 // Efecto de carga en las cartas
-function task(sp) {
+function loadEffect(card) {
     setTimeout(() => {
-        sp[5].style.display = 'block';
-    }, 700);
+        card.children[1].style.backfaceVisibility = 'visible';
+    }, 300);
 }
 
-function f() {
-    let span = Array.from(document.querySelectorAll('span'));
-
-    task(span);
-
+function shuffleArray(inputArray){
+    let i,j,k;
+    for (i = inputArray.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        k = inputArray[i - 1];
+        inputArray[i - 1] = inputArray[j];
+        inputArray[j] = k;
+    }
 }
 
 function loadGameScript() {
-    for (let i = 0; i < 17; i++)
+    for (let i = 0; i < 9; i++)
         createCard(i);
 
+    // Barajea el array de cartas
+    shuffleArray(arrayCards);
+
     for (let i = 0; i < arrayCards.length; i++) {
-        for (let j = 0; j < 2; j++)
-            <!-- todo arrayCards[i] sostituir por algoritmo aleatorio -->
-            document.getElementById("cardsContainer").innerHTML += arrayCards[i];
-
-        i != arrayCards.length - 2 ? i++ : console.log("Finish") ;
+        document.getElementById("cardsContainer").innerHTML += arrayCards[i];
     }
 
-    let span = Array.from(document.querySelectorAll('span'));
-    for (let i = 0; i < span.length; i++) {
-        span[i].style.display = 'none';
-    }
+    document.querySelectorAll('.cardT').forEach(card => {
+        card.addEventListener('click', () => {
+            card.style.animation = 'animationFlipCard 1s forwards';
+            loadEffect(card);
 
-    document.getElementById('cardsContainer').addEventListener("animationstart", f);
-
-}
-
-loadGameScript();
-
-function cardCheck(cardItem) {
-    cardItem.style.animation = 'animationCardRotateReveal 2.5s forwards';
+        });
+    });
 
 }
-
-
-
