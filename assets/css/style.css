@@ -15,7 +15,7 @@ body {
     margin-top: 3%;
 }
 
-.cardT {
+.cardObject {
     margin: 2px;
     width: 190px;
     height: 280px;
@@ -44,8 +44,6 @@ body {
     width: 100%;
 
     transform: translateY(-100%) rotateY(180deg);
-    background: linear-gradient(0deg, #00FF3740, rgba(9, 0, 0, 0.36)), url(https://fotos.subefotos.com/4a251f003817e2ecf23cd173450d6edco.jpg) no-repeat;
-    background-size: cover;
 
     backface-visibility: hidden;
     border: 2px solid;

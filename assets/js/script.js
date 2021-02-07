@@ -1,8 +1,7 @@
 const arrayCards = [];
-const repeatIndexCards = [];
 
 function createCard(i) {
-    let card = '<div name="cardID" id="cardID_' + i + '" class="col-2 cardT">' +
+    let card = '<div name="cardID" id="cardID_' + i + '" class="col-2 cardObject">' +
         '<div id="cardFront"></div>' +
         '<div id="cardBack"></div>' +
         '</div>';
@@ -12,13 +11,7 @@ function createCard(i) {
     arrayCards.push(card);
 }
 
-// Efecto de carga en las cartas
-function loadEffect(card) {
-    setTimeout(() => {
-        card.children[1].style.backfaceVisibility = 'visible';
-    }, 300);
-}
-
+// Barajea la array
 function shuffleArray(inputArray){
     let i,j,k;
     for (i = inputArray.length; i; i--) {
@@ -29,23 +22,32 @@ function shuffleArray(inputArray){
     }
 }
 
+// Efecto de carga en las cartas
+function loadEffect(card) {
+    setTimeout(() => {
+        card.children[1].style.backfaceVisibility = 'visible';
+    }, 300);
+}
+
 function loadGameScript() {
     for (let i = 0; i < 9; i++)
         createCard(i);
 
-    // Barajea el array de cartas
     shuffleArray(arrayCards);
 
-    for (let i = 0; i < arrayCards.length; i++) {
+    // Añade las cartas al contenedor
+    for (let i = 0; i < arrayCards.length; i++)
         document.getElementById("cardsContainer").innerHTML += arrayCards[i];
-    }
 
-    document.querySelectorAll('.cardT').forEach(card => {
+    // Añade el EventListener a cada carta
+    document.querySelectorAll('.cardObject').forEach(card => {
+        showBackImage(card);
+
         card.addEventListener('click', () => {
             card.style.animation = 'animationFlipCard 1s forwards';
             loadEffect(card);
-
         });
+
     });
 
 }
