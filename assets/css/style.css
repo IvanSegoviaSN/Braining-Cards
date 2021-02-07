@@ -12,14 +12,12 @@ body {
 }
 
 #containerGame {
-    margin-top: 3%;
+    margin-top: 2%;
 }
 
 .cardObject {
-    margin: 2px;
-    width: 190px;
-    height: 280px;
-    padding: 0%;
+    width: 210px;
+    height: 300px;
 }
 
 #cardFront {
@@ -51,6 +49,21 @@ body {
     box-shadow: 0px 10px 30px 20px rgba(0,0,0,0.75);
 }
 
+
+@keyframes flip-2-hor-bottom-1 {
+    0% {
+        transform: translateY(0) rotateX(0);
+        transform-origin: 50% 100%;
+    }
+    50% {
+        transform: translateY(100%) rotateX(180deg);
+        transform-origin: 50% 0%;
+    }
+    100% {
+        transform: translateY(0) rotateX(0) rotateY(0deg);
+        transform-origin: 50% 100%;
+    }
+}
 
 @keyframes animationFlipCard {
     0%{transform: rotateY(0deg)}

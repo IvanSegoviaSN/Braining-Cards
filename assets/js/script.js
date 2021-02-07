@@ -1,4 +1,5 @@
 const arrayCards = [];
+const tempCards = [];
 
 function createCard(i) {
     let card = '<div name="cardID" id="cardID_' + i + '" class="col-2 cardObject">' +
@@ -6,27 +7,44 @@ function createCard(i) {
         '<div id="cardBack"></div>' +
         '</div>';
 
-    // Doble para que las cartas coincidan
+    // Doble para generar los pares de cartas
     arrayCards.push(card);
     arrayCards.push(card);
 }
 
-// Barajea la array
-function shuffleArray(inputArray){
-    let i,j,k;
-    for (i = inputArray.length; i; i--) {
-        j = Math.floor(Math.random() * i);
-        k = inputArray[i - 1];
-        inputArray[i - 1] = inputArray[j];
-        inputArray[j] = k;
+function checkCard(card) {
+
+    // Max 2 [0-1]
+    if (tempCards.length <= 1) {
+        tempCards.push(card);
+
+        // Si es undefined, es la primera carta y solo interesa guardarla
+        if (tempCards[1] != undefined) {
+
+            // Si coincide
+            if (tempCards[0].id == tempCards[1].id) {
+                for (let i = 0; i < 2; i++)
+                    // Elimina el evento click
+                    tempCards[i].style.pointerEvents = 'none';
+
+                tempCards.splice(0, 2);
+
+            // Si no coincide
+            } else if (tempCards[1].id == card.id) {
+                setTimeout(() => {
+                    card.style.animation = 'flip-2-hor-bottom-1 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both';
+                    tempCards[0].style.animation = 'flip-2-hor-bottom-1 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both';
+                    loadEffect(tempCards[0], card, 300);
+
+                    tempCards.splice(0, 2);
+                }, 1500);
+            }
+        }
+
+        return true;
+    } else {
+        return false;
     }
-}
-
-// Efecto de carga en las cartas
-function loadEffect(card) {
-    setTimeout(() => {
-        card.children[1].style.backfaceVisibility = 'visible';
-    }, 300);
 }
 
 function loadGameScript() {
@@ -35,17 +53,21 @@ function loadGameScript() {
 
     shuffleArray(arrayCards);
 
-    // Añade las cartas al contenedor
+    // Inserto las tablas en el DOM
     for (let i = 0; i < arrayCards.length; i++)
         document.getElementById("cardsContainer").innerHTML += arrayCards[i];
 
-    // Añade el EventListener a cada carta
+    // Añade un evento de tipo click a cada carta
     document.querySelectorAll('.cardObject').forEach(card => {
+
+        // Inserta la cara trasera correspondiente
         showBackImage(card);
 
         card.addEventListener('click', () => {
-            card.style.animation = 'animationFlipCard 1s forwards';
-            loadEffect(card);
+            if (checkCard(card)) {
+                card.style.animation = 'animationFlipCard 1s forwards';
+                loadEffect(card, null, 300);
+            }
         });
 
     });

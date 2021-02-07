@@ -50,3 +50,26 @@ function showBackImage(card) {
             break;
     }
 }
+
+
+// Efecto de carga en las cartas
+function loadEffect(card0, card1, time) {
+    setTimeout(() => {
+        if (card1 != null) {
+            card0.children[1].style.backfaceVisibility = 'hidden';
+            card1.children[1].style.backfaceVisibility = 'hidden';
+        } else {
+            card0.children[1].style.backfaceVisibility = 'visible';
+        }
+    }, time);
+}
+
+// Barajea el array
+function shuffleArray(inputArray, i, j, k) {
+    for (i = inputArray.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        k = inputArray[i - 1];
+        inputArray[i - 1] = inputArray[j];
+        inputArray[j] = k;
+    }
+}
