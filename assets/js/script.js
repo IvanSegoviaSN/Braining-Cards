@@ -1,6 +1,9 @@
 const arrayCards = [];
 const tempCards = [];
 
+// Puntuacion
+let score = 0;
+
 function createCard(i) {
     let card = '<div name="cardID" id="cardID_' + i + '" class="col-2 cardObject">' +
         '<div id="cardFront"></div>' +
@@ -10,6 +13,10 @@ function createCard(i) {
     // Doble para generar los pares de cartas
     arrayCards.push(card);
     arrayCards.push(card);
+}
+
+function saveScore(value) {
+    document.getElementById("score").innerHTML = value;
 }
 
 function checkCard(card) {
@@ -23,9 +30,17 @@ function checkCard(card) {
 
             // Si coincide
             if (tempCards[0].id == tempCards[1].id) {
-                for (let i = 0; i < 2; i++)
+                for (let i = 0; i < 2; i++) {
                     // Elimina el evento click
                     tempCards[i].style.pointerEvents = 'none';
+                }
+
+                tempCards[0].children[1].style.background = 'linear-gradient(0deg, rgba(58, 119, 49, 0.53), rgba(51, 176, 41, 0.2))';
+                tempCards[1].children[1].style.background = 'linear-gradient(0deg, rgba(58, 119, 49, 0.53), rgba(51, 176, 41, 0.2))';
+
+                // Si ha ganado, si no, suma
+                score != 8 ? saveScore(++score)
+                           : document.getElementById("winText").innerHTML = '¡Has ganado!';
 
                 tempCards.splice(0, 2);
 

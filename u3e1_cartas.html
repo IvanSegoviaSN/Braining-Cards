@@ -17,12 +17,17 @@
 <body onload="loadGameScript();">
 
 <div id="containerGame" class="container">
+    <div id="scoreContainer" class="row">
+        <div class="col-7 align-self-center"><h2>Puntuación</h2></div>
+        <div class="col-1"><h1 id="score">0</h1></div>
+
+        <div class="col-4 align-self-center"><h4 id="winText">¡Obtén las parejas para ganar!</h4></div>
+    </div>
     <div id="cardsContainer" class="row justify-content-center">
         <!-- cardID_<iteration> -->
     </div>
 </div>
 
-<script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/front.js"></script>
 </body>

@@ -11,13 +11,15 @@ body {
 
 }
 
-#containerGame {
-    margin-top: 2%;
-}
+#scoreContainer {
+    margin: 5px auto;
 
-.cardObject {
-    width: 210px;
-    height: 300px;
+    color: white;
+    background-image: url(https://img.freepik.com/foto-gratis/madera-negra-textura-tablones-madera-vieja_88281-1836.jpg);
+
+    border: 2px solid #8c8c8c;
+    border-radius: 8px;
+    box-shadow: 0px 10px 30px 20px rgba(0,0,0,0.75);
 }
 
 #cardFront {
@@ -32,9 +34,8 @@ body {
     box-shadow: 0px 10px 30px 20px rgba(0,0,0,0.75);
 }
 
-#cardsContainer #cardFront:hover {
+#cardFront:hover {
     cursor: pointer;
-    animation: text-shadow-pop-top 0.3s forwards;
 }
 
 #cardBack {
@@ -49,6 +50,10 @@ body {
     box-shadow: 0px 10px 30px 20px rgba(0,0,0,0.75);
 }
 
+.cardObject {
+    width: 210px;
+    height: 300px;
+}
 
 @keyframes flip-2-hor-bottom-1 {
     0% {
