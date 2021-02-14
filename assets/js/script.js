@@ -1,7 +1,6 @@
 const arrayCards = [];
 const tempCards = [];
 
-// Puntuacion
 let score = 0;
 
 function createCard(i) {
@@ -21,7 +20,6 @@ function saveScore(value) {
 
 function checkCard(card) {
 
-    // Max 2 [0-1]
     if (tempCards.length <= 1) {
         tempCards.push(card);
 
@@ -72,7 +70,6 @@ function loadGameScript() {
     for (let i = 0; i < arrayCards.length; i++)
         document.getElementById("cardsContainer").innerHTML += arrayCards[i];
 
-    // Añade un evento de tipo click a cada carta
     document.querySelectorAll('.cardObject').forEach(card => {
 
         // Inserta la cara trasera correspondiente
